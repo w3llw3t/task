@@ -3,6 +3,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import static org.junit.Assert.*;
 import org.apache.commons.io.IOUtils;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -14,6 +15,10 @@ public class Tests {
      * Позитивные тесты
      */
 
+    public interface PositiveTests { /* Маркерный интерфейс для позитивных тестов */ }
+    public interface NegativeTests { /* Маркерный интерфейс для негативных тестов */ }
+
+    @Category(PositiveTests.class)
     @Test
     public void testSuccessField_TrueIfSherlockPresent() {
         String json = null; // Считываем содержимое файла result.json
@@ -45,6 +50,7 @@ public class Tests {
         }
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testDetectivesArraySizeInRange() {
         String json = null; // Считываем содержимое файла result.json
@@ -61,6 +67,7 @@ public class Tests {
         assertTrue(arraySize >= 1 && arraySize <= 3);
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testMainIdInRange() {
         String json = null; // Считываем содержимое файла result.json
@@ -81,6 +88,7 @@ public class Tests {
         }
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testViolinPlayerFieldBooleanType() {
         String json = null; // Считываем содержимое файла result.json
@@ -101,6 +109,7 @@ public class Tests {
         }
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testCategoriesArrayExists() {
         String json = null; // Считываем содержимое файла result.json
@@ -119,6 +128,7 @@ public class Tests {
         }
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testCategoryIdValues() {
         String json = null; // Считываем содержимое файла result.json
@@ -144,6 +154,7 @@ public class Tests {
         }
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testExtraArrayNotEmptyForCategoryId1() {
         String json = null; // Считываем содержимое файла result.json
@@ -185,6 +196,7 @@ public class Tests {
         assertTrue(extraArrayNotEmpty);
     }
 
+    @Category(PositiveTests.class)
     @Test
     public void testExtraFieldNullForCategoryId2() {
         String json = null; // Считываем содержимое файла result.json
@@ -216,6 +228,7 @@ public class Tests {
      * Негативные тесты
      */
 
+    @Category(NegativeTests.class)
     @Test
     public void testDetectivesArrayNotEmpty() {
         String json = null;  // Считываем содержимое файла result.json
@@ -229,6 +242,7 @@ public class Tests {
         assertFalse(jsonObject.isNull("nonexistentField"));
     }
 
+    @Category(NegativeTests.class)
     @Test
     public void testSuccessFieldFalseIfSherlockNotPresent() {
         String json = null; // Считываем содержимое файла result.json
@@ -260,6 +274,7 @@ public class Tests {
         }
     }
 
+    @Category(NegativeTests.class)
     @Test
     public void testExtraArrayEmptyForCategoryId1() {
         String json = null; // Считываем содержимое файла result.json
@@ -289,6 +304,7 @@ public class Tests {
         }
     }
 
+    @Category(NegativeTests.class)
     @Test
     public void testExtraFieldNullForCategoryId22() {
         String json = null; // Считываем содержимое файла result.json
